@@ -1,0 +1,35 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.gmao"
+        },
+        "jhipsterVersion": "5.8.2",
+        "applicationType": "monolith",
+        "baseName": "gmaov",
+        "packageName": "com.gmao",
+        "packageFolder": "com/gmao",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": true,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mysql",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "Njc0ZGRiMjM3NjE0ZmJhMTkzYTFjMjU4NDhkZmQyNDc2YjEyYTVmM2VlOTAwM2NkMThhMzM0NjAzYWYyOTkxNDg2NTNiYTJjYmYwYmZkNWU5OWZkNWM2ZTY3Yjk2MzNkNWY1Zjg3NWFlZTlmNDMzYmZmNDE3ZDgwZmQyN2JlNWY=",
+        "clientFramework": "angularX",
+        "useSass": false,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": false
+    }
+}
