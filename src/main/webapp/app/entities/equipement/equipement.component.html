@@ -1,0 +1,137 @@
+<div>
+    <h2 id="page-heading">
+        <span>Equipements</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-equipement" [routerLink]="['/equipement/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Equipement
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+
+    <div class="form-row">
+        <div class="form-group col-md-3"> 
+<span >Filter Par :</span>
+<br/>
+<input type="text" [(ngModel)]="filter" class="form-control" placeholder="Fabricant">
+    <br/>
+    </div>
+
+
+    
+    <div class="form-group col-md-3"> 
+            <span >Filter Par :</span>
+            <br/>
+            <input type="text" [(ngModel)]="filter1" class="form-control" placeholder="Nom Equipement">
+                <br/>
+                </div>
+</div>
+
+
+    <div class="table-responsive" *ngIf="equipements">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nomEquipement"><span>Nom Equipement</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="marque"><span>Marque</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateAchat"><span>Date Achat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="datedernieremaintenance"><span>Datedernieremaintenance</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateexperation"><span>Dateexperation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fabricant"><span>Fabricant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="prixAchat"><span>Prix Achat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numeroSerie"><span>Numero Serie</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numeroCommande"><span>Numero Commande</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image"><span>Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="equipementFils"><span>Equipements_Fils</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="equipementParentId"><span>Equipement Parent</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="typeequipementId"><span>Typeequipement</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="localisationsId"><span>Localisations</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="serviceeId"><span>Servicee</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let equipement of(equipements | pureFilter:filter:'fabricant'|pureFilter:filter1:'nomEquipement'| orderBy:orderProp:reverse) trackBy: trackId">
+                <td><a [routerLink]="['/equipement', equipement.id, 'view' ]">{{equipement.id}}</a></td>
+                <td>{{equipement.nomEquipement}}</td>
+                <td>{{equipement.marque}}</td>
+                <td>{{equipement.description}}</td>
+                <td>{{equipement.dateAchat | date:'mediumDate'}}</td>
+                <td>{{equipement.datedernieremaintenance | date:'mediumDate'}}</td>
+                <td>{{equipement.dateexperation | date:'mediumDate'}}</td>
+                <td>{{equipement.fabricant}}</td>
+                <td>{{equipement.prixAchat}}</td>
+                <td>{{equipement.numeroSerie}}</td>
+                <td>{{equipement.numeroCommande}}</td>
+                <td>
+                    <a *ngIf="equipement.image" (click)="openFile(equipement.imageContentType, equipement.image)">
+                        <img [src]="'data:' + equipement.imageContentType + ';base64,' + equipement.image" style="max-height: 30px;" alt="equipement image"/>
+                    </a>
+                    <span *ngIf="equipement.image">{{equipement.imageContentType}}, {{byteSize(equipement.image)}}</span>
+                </td>
+                <td>
+                <ng-container *ngFor="let equipementFils of equipement.equipementFils"> 
+                    <a [routerLink]="['../equipement', equipementFils.id , 'view' ]">{{equipementFils.nomEquipement}}</a></br>
+                    </ng-container>
+                </td>
+                <td>
+                    <div *ngIf="equipement.equipementparentDTO && equipement.equipementparentDTO.id">
+                        <a [routerLink]="['../equipement', equipement.equipementparentDTO.id , 'view' ]" >{{equipement.equipementparentDTO.nomEquipement}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="equipement.typeequipementDTO && equipement.typeequipementDTO.id">
+                        <a [routerLink]="['../typeequipement', equipement.typeequipementDTO.id , 'view' ]" >{{equipement.typeequipementDTO.typeequipem}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="equipement.localisationDTO && equipement.localisationDTO.id">
+                        <a [routerLink]="['../localisations', equipement.localisationDTO.id , 'view' ]" >{{equipement.localisationDTO.nomlocalisation}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="equipement.serviceDTO && equipement.serviceDTO.id">
+                        <a [routerLink]="['../servicee', equipement.serviceDTO.id , 'view' ]" >{{equipement.serviceDTO.nomService}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/equipement', equipement.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/equipement', equipement.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'equipement', { outlets: { popup: equipement.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="equipement && equipement.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="10" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{
+    "name": "Localisations",
+    "fields": [
+        {
+            "fieldName": "nomlocalisation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "equipement",
+            "otherEntityRelationshipName": "localisations",
+            "relationshipName": "localisationeEquipements"
+        }
+    ],
+    "changelogDate": "20190429203508",
+    "entityTableName": "localisations",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

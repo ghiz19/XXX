@@ -1,0 +1,55 @@
+{
+    "name": "Demandeintervention",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "degreeurgence",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "datedemande",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "priorite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateprevu",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "datereel",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "interevntion",
+            "otherEntityRelationshipName": "demandeintervention",
+            "relationshipName": "demandeinterven"
+        },
+        {
+            "relationshipName": "utilisateur",
+            "otherEntityName": "utilisateur",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190516120637",
+    "entityTableName": "demandeintervention",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

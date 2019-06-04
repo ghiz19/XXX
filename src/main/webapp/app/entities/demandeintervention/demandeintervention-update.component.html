@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-demandeintervention-heading">Create or edit a Demandeintervention</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!demandeintervention.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="demandeintervention.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="demandeintervention.description" required/>
+                    <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.description?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_degreeurgence">Degreeurgence</label>
+                    <input type="text" class="form-control" name="degreeurgence" id="field_degreeurgence"
+                        [(ngModel)]="demandeintervention.degreeurgence" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_datedemande">Datedemande</label>
+                    <div class="input-group">
+                        <input id="field_datedemande" type="text" class="form-control" name="datedemande" ngbDatepicker  #datedemandeDp="ngbDatepicker" [(ngModel)]="demandeintervention.datedemande"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="datedemandeDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_priorite">Priorite</label>
+                    <input type="text" class="form-control" name="priorite" id="field_priorite"
+                        [(ngModel)]="demandeintervention.priorite" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateprevu">Dateprevu</label>
+                    <input type="text" class="form-control" name="dateprevu" id="field_dateprevu"
+                        [(ngModel)]="demandeintervention.dateprevu" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_datereel">Datereel</label>
+                    <input type="text" class="form-control" name="datereel" id="field_datereel"
+                        [(ngModel)]="demandeintervention.datereel" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_utilisateur">Utilisateur</label>
+                    <select class="form-control" id="field_utilisateur" name="utilisateur" [(ngModel)]="demandeintervention.utilisateurId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="utilisateurOption.id" *ngFor="let utilisateurOption of utilisateurs; trackBy: trackUtilisateurById">{{utilisateurOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

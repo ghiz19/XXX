@@ -224,4 +224,17 @@ ui bootstrap tweaks
     white-space: nowrap;
 }
 
+table#disenio {
+    border: 1px solid rgb(221, 221, 221);
+    width: 50px;
+    height: 20px;
+}
+table#disenio td,
+table#disenio th {
+    border: 1px solid rgb(221, 221, 221);
+    width: 50px;
+    height: 20px;
+    text-align: left;
+}
+
 /* jhipster-needle-css-add-main JHipster will add new css style */

@@ -1,0 +1,29 @@
+{
+    "name": "Servicee",
+    "fields": [
+        {
+            "fieldName": "nomService",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "equipement",
+            "otherEntityRelationshipName": "servicee",
+            "relationshipName": "equipems"
+        }
+    ],
+    "changelogDate": "20190429203509",
+    "entityTableName": "servicee",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

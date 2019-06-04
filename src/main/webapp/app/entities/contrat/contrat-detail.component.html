@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contrat">
+            <h2><span>Contrat</span> {{contrat.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nomcontrat</span></dt>
+                <dd>
+                    <span>{{contrat.nomcontrat}}</span>
+                </dd>
+                <dt><span>Coutcontrat</span></dt>
+                <dd>
+                    <span>{{contrat.coutcontrat}}</span>
+                </dd>
+                <dt><span>Numerocontrat</span></dt>
+                <dd>
+                    <span>{{contrat.numerocontrat}}</span>
+                </dd>
+                <dt><span>Datedebutcontrat</span></dt>
+                <dd>
+                    <span>{{contrat.datedebutcontrat}}</span>
+                </dd>
+                <dt><span>Datefincontrat</span></dt>
+                <dd>
+                    <span>{{contrat.datefincontrat}}</span>
+                </dd>
+                <dt><span>Daterealisation</span></dt>
+                <dd>
+                    <span>{{contrat.daterealisation}}</span>
+                </dd>
+                <dt><span>Equipement</span></dt>
+                <dd>
+                    <div *ngIf="contrat.equipementId">
+                        <a [routerLink]="['/equipement', contrat.equipementId, 'view']">{{contrat.equipementId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contrat', contrat.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

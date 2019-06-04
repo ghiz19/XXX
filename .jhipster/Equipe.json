@@ -1,0 +1,35 @@
+{
+    "name": "Equipe",
+    "fields": [
+        {
+            "fieldName": "nomequipe",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "interevntion",
+            "otherEntityRelationshipName": "equipe",
+            "relationshipName": "equipeintervention"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "utilisateur",
+            "otherEntityRelationshipName": "equipe",
+            "relationshipName": "equipeuser"
+        }
+    ],
+    "changelogDate": "20190516120648",
+    "entityTableName": "equipe",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,124 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-interevntion-heading">Create or edit a Interevntion</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!interevntion.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="interevntion.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_datedebutintervention">Datedebutintervention</label>
+                    <div class="d-flex">
+                        <input id="field_datedebutintervention" type="datetime-local" class="form-control" name="datedebutintervention" [(ngModel)]="datedebutintervention" placeholder="YYYY-MM-DD HH:mm"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.datedebutintervention?.dirty && editForm.controls.datedebutintervention?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.datedebutintervention?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.datedebutintervention?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_datefinintervention">Datefinintervention</label>
+                    <div class="d-flex">
+                        <input id="field_datefinintervention" type="datetime-local" class="form-control" name="datefinintervention" [(ngModel)]="datefinintervention" placeholder="YYYY-MM-DD HH:mm"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.datefinintervention?.dirty && editForm.controls.datefinintervention?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.datefinintervention?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.datefinintervention?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_duree">Duree</label>
+                    <input type="text" class="form-control" name="duree" id="field_duree"
+                        [(ngModel)]="interevntion.duree" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_coutmaindeuvre">Coutmaindeuvre</label>
+                    <input type="text" class="form-control" name="coutmaindeuvre" id="field_coutmaindeuvre"
+                        [(ngModel)]="interevntion.coutmaindeuvre" required/>
+                    <div [hidden]="!(editForm.controls.coutmaindeuvre?.dirty && editForm.controls.coutmaindeuvre?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.coutmaindeuvre?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_coutinterevntion">Coutinterevntion</label>
+                    <input type="text" class="form-control" name="coutinterevntion" id="field_coutinterevntion"
+                        [(ngModel)]="interevntion.coutinterevntion" required/>
+                    <div [hidden]="!(editForm.controls.coutinterevntion?.dirty && editForm.controls.coutinterevntion?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.coutinterevntion?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_solutions">Solutions</label>
+                    <input type="text" class="form-control" name="solutions" id="field_solutions"
+                        [(ngModel)]="interevntion.solutions" required/>
+                    <div [hidden]="!(editForm.controls.solutions?.dirty && editForm.controls.solutions?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.solutions?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_demandeintervention">Demandeintervention</label>
+                    <select class="form-control" id="field_demandeintervention" name="demandeintervention" [(ngModel)]="interevntion.demandeinterventionId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="demandeinterventionOption.id" *ngFor="let demandeinterventionOption of demandeinterventions; trackBy: trackDemandeinterventionById">{{demandeinterventionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_planprevetinf">Planprevetinf</label>
+                    <select class="form-control" id="field_planprevetinf" name="planprevetinf" [(ngModel)]="interevntion.planprevetinfId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="planprevetinfOption.id" *ngFor="let planprevetinfOption of planprevetinfs; trackBy: trackPlanprevetinfById">{{planprevetinfOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_etat">Etat</label>
+                    <select class="form-control" id="field_etat" name="etat" [(ngModel)]="interevntion.etatId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="etatOption.id" *ngFor="let etatOption of etats; trackBy: trackEtatById">{{etatOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_equipe">Equipe</label>
+                    <select class="form-control" id="field_equipe" name="equipe" [(ngModel)]="interevntion.equipeId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="equipeOption.id" *ngFor="let equipeOption of equipes; trackBy: trackEquipeById">{{equipeOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

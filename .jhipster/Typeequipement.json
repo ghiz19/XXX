@@ -1,0 +1,29 @@
+{
+    "name": "Typeequipement",
+    "fields": [
+        {
+            "fieldName": "typeequipem",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "equipement",
+            "otherEntityRelationshipName": "typeequipement",
+            "relationshipName": "equipments"
+        }
+    ],
+    "changelogDate": "20190429203506",
+    "entityTableName": "typeequipement",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

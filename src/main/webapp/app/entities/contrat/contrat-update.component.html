@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-contrat-heading">Create or edit a Contrat</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!contrat.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="contrat.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nomcontrat">Nomcontrat</label>
+                    <input type="text" class="form-control" name="nomcontrat" id="field_nomcontrat"
+                        [(ngModel)]="contrat.nomcontrat" required/>
+                    <div [hidden]="!(editForm.controls.nomcontrat?.dirty && editForm.controls.nomcontrat?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nomcontrat?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_coutcontrat">Coutcontrat</label>
+                    <input type="number" class="form-control" name="coutcontrat" id="field_coutcontrat"
+                        [(ngModel)]="contrat.coutcontrat" required/>
+                    <div [hidden]="!(editForm.controls.coutcontrat?.dirty && editForm.controls.coutcontrat?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.coutcontrat?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.coutcontrat?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numerocontrat">Numerocontrat</label>
+                    <input type="number" class="form-control" name="numerocontrat" id="field_numerocontrat"
+                        [(ngModel)]="contrat.numerocontrat" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_datedebutcontrat">Datedebutcontrat</label>
+                    <div class="input-group">
+                        <input id="field_datedebutcontrat" type="text" class="form-control" name="datedebutcontrat" ngbDatepicker  #datedebutcontratDp="ngbDatepicker" [(ngModel)]="contrat.datedebutcontrat"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="datedebutcontratDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.datedebutcontrat?.dirty && editForm.controls.datedebutcontrat?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.datedebutcontrat?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_datefincontrat">Datefincontrat</label>
+                    <div class="input-group">
+                        <input id="field_datefincontrat" type="text" class="form-control" name="datefincontrat" ngbDatepicker  #datefincontratDp="ngbDatepicker" [(ngModel)]="contrat.datefincontrat"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="datefincontratDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.datefincontrat?.dirty && editForm.controls.datefincontrat?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.datefincontrat?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_daterealisation">Daterealisation</label>
+                    <div class="input-group">
+                        <input id="field_daterealisation" type="text" class="form-control" name="daterealisation" ngbDatepicker  #daterealisationDp="ngbDatepicker" [(ngModel)]="contrat.daterealisation"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="daterealisationDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_equipement">Equipement</label>
+                    <select class="form-control" id="field_equipement" name="equipementDTO" [(ngModel)]="contrat.equipementDTO" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="equipementOption" *ngFor="let equipementOption of equipements; trackBy: trackEquipementById">{{equipementOption.nomEquipement}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -87,3 +87,6 @@ Logo styles
     vertical-align: middle;
     width: 70px;
 }
+.navbar-border {
+    border-bottom: solid 5px #0080c5;
+}

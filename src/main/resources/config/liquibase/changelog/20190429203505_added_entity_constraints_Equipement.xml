@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Equipement.
+    -->
+    <changeSet id="20190429203505-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="equipement_parent_id"
+                                 baseTableName="equipement"
+                                 constraintName="fk_equipement_equipement_parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="equipement"/>
+
+        <addForeignKeyConstraint baseColumnNames="equipement_id"
+                                 baseTableName="equipement_equipement_fils"
+                                 constraintName="fk_equipement_equipement_fils_equipement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="equipement"/>
+        <addForeignKeyConstraint baseColumnNames="equipement_fils_id"
+                                 baseTableName="equipement_equipement_fils"
+                                 constraintName="fk_equipement_equipement_fils_equipement_fils_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="equipement"/>
+        
+        <addForeignKeyConstraint baseColumnNames="equipement_id"
+                                 baseTableName="equipement_equipsdemandes"
+                                 constraintName="fk_equipement_equipsdemandes_equipement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="equipement"/>
+        <addForeignKeyConstraint baseColumnNames="equipsdemandes_id"
+                                 baseTableName="equipement_equipsdemandes"
+                                 constraintName="fk_equipement_equipsdemandes_equipsdemandes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="demandeintervention"/>
+        
+        <addForeignKeyConstraint baseColumnNames="typeequipement_id"
+                                 baseTableName="equipement"
+                                 constraintName="fk_equipement_typeequipement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="typeequipement"/>
+
+        <addForeignKeyConstraint baseColumnNames="localisations_id"
+                                 baseTableName="equipement"
+                                 constraintName="fk_equipement_localisations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="localisations"/>
+
+        <addForeignKeyConstraint baseColumnNames="servicee_id"
+                                 baseTableName="equipement"
+                                 constraintName="fk_equipement_servicee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="servicee"/>
+
+    </changeSet>
+</databaseChangeLog>

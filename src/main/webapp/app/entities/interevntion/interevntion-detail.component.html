@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="interevntion">
+            <h2><span>Interevntion</span> {{interevntion.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Datedebutintervention</span></dt>
+                <dd>
+                    <span>{{interevntion.datedebutintervention}}</span>
+                </dd>
+                <dt><span>Datefinintervention</span></dt>
+                <dd>
+                    <span>{{interevntion.datefinintervention}}</span>
+                </dd>
+                <dt><span>Duree</span></dt>
+                <dd>
+                    <span>{{interevntion.duree}}</span>
+                </dd>
+                <dt><span>Coutmaindeuvre</span></dt>
+                <dd>
+                    <span>{{interevntion.coutmaindeuvre}}</span>
+                </dd>
+                <dt><span>Coutinterevntion</span></dt>
+                <dd>
+                    <span>{{interevntion.coutinterevntion}}</span>
+                </dd>
+                <dt><span>Solutions</span></dt>
+                <dd>
+                    <span>{{interevntion.solutions}}</span>
+                </dd>
+                <dt><span>Demandeintervention</span></dt>
+                <dd>
+                    <div *ngIf="interevntion.demandeinterventionId">
+                        <a [routerLink]="['/demandeintervention', interevntion.demandeinterventionId, 'view']">{{interevntion.demandeinterventionId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Planprevetinf</span></dt>
+                <dd>
+                    <div *ngIf="interevntion.planprevetinfId">
+                        <a [routerLink]="['/planprevetinf', interevntion.planprevetinfId, 'view']">{{interevntion.planprevetinfId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Etat</span></dt>
+                <dd>
+                    <div *ngIf="interevntion.etatId">
+                        <a [routerLink]="['/etat', interevntion.etatId, 'view']">{{interevntion.etatId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Equipe</span></dt>
+                <dd>
+                    <div *ngIf="interevntion.equipeId">
+                        <a [routerLink]="['/equipe', interevntion.equipeId, 'view']">{{interevntion.equipeId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/interevntion', interevntion.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

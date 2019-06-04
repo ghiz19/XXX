@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="equipement">
+            <h2><span>Equipement</span> {{equipement.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nom Equipement</span></dt>
+                <dd>
+                    <span>{{equipement.nomEquipement}}</span>
+                </dd>
+                <dt><span>Marque</span></dt>
+                <dd>
+                    <span>{{equipement.marque}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{equipement.description}}</span>
+                </dd>
+                <dt><span>Date Achat</span></dt>
+                <dd>
+                    <span>{{equipement.dateAchat}}</span>
+                </dd>
+                <dt><span>Datedernieremaintenance</span></dt>
+                <dd>
+                    <span>{{equipement.datedernieremaintenance}}</span>
+                </dd>
+                <dt><span>Dateexperation</span></dt>
+                <dd>
+                    <span>{{equipement.dateexperation}}</span>
+                </dd>
+                <dt><span>Fabricant</span></dt>
+                <dd>
+                    <span>{{equipement.fabricant}}</span>
+                </dd>
+                <dt><span>Prix Achat</span></dt>
+                <dd>
+                    <span>{{equipement.prixAchat}}</span>
+                </dd>
+                <dt><span>Numero Serie</span></dt>
+                <dd>
+                    <span>{{equipement.numeroSerie}}</span>
+                </dd>
+                <dt><span>Numero Commande</span></dt>
+                <dd>
+                    <span>{{equipement.numeroCommande}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="equipement.image">
+                        <a (click)="openFile(equipement.imageContentType, equipement.image)">
+                            <img [src]="'data:' + equipement.imageContentType + ';base64,' + equipement.image" style="max-width: 100%;" alt="equipement image"/>
+                        </a>
+                        {{equipement.imageContentType}}, {{byteSize(equipement.image)}}
+                    </div>
+                </dd>
+                <dt><span>Equipement Parent</span></dt>
+                <dd>
+                    <div *ngIf="equipement.equipementParentId">
+                        <a [routerLink]="['/equipement', equipement.equipementParentId, 'view']">{{equipement.equipementParentId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Equipement Fils</span></dt>
+                <dd>
+                    <span *ngFor="let equipementFils of equipement.equipementFils; let last = last">
+                        <a [routerLink]="['/equipement', equipementFils?.id, 'view' ]">{{equipementFils.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Equipsdemandes</span></dt>
+                <dd>
+                    <span *ngFor="let equipsdemandes of equipement.equipsdemandes; let last = last">
+                        <a [routerLink]="['/demandeintervention', equipsdemandes?.id, 'view' ]">{{equipsdemandes.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Typeequipement</span></dt>
+                <dd>
+                    <div *ngIf="equipement.typeequipementId">
+                        <a [routerLink]="['/typeequipement', equipement.typeequipementId, 'view']">{{equipement.typeequipementId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Localisations</span></dt>
+                <dd>
+                    <div *ngIf="equipement.localisationsId">
+                        <a [routerLink]="['/localisations', equipement.localisationsId, 'view']">{{equipement.localisationsId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Servicee</span></dt>
+                <dd>
+                    <div *ngIf="equipement.serviceeId">
+                        <a [routerLink]="['/servicee', equipement.serviceeId, 'view']">{{equipement.serviceeId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/equipement', equipement.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

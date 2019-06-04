@@ -1,0 +1,174 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-equipement-heading">Create or edit a Equipement</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!equipement.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="equipement.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nomEquipement">Nom Equipement</label>
+                    <input type="text" class="form-control" name="nomEquipement" id="field_nomEquipement"
+                        [(ngModel)]="equipement.nomEquipement" required/>
+                    <div [hidden]="!(editForm.controls.nomEquipement?.dirty && editForm.controls.nomEquipement?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nomEquipement?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_marque">Marque</label>
+                    <input type="text" class="form-control" name="marque" id="field_marque"
+                        [(ngModel)]="equipement.marque" required/>
+                    <div [hidden]="!(editForm.controls.marque?.dirty && editForm.controls.marque?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.marque?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="equipement.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateAchat">Date Achat</label>
+                    <div class="input-group">
+                        <input id="field_dateAchat" type="text" class="form-control" name="dateAchat" ngbDatepicker  #dateAchatDp="ngbDatepicker" [(ngModel)]="equipement.dateAchat"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAchatDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_datedernieremaintenance">Datedernieremaintenance</label>
+                    <div class="input-group">
+                        <input id="field_datedernieremaintenance" type="text" class="form-control" name="datedernieremaintenance" ngbDatepicker  #datedernieremaintenanceDp="ngbDatepicker" [(ngModel)]="equipement.datedernieremaintenance"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="datedernieremaintenanceDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateexperation">Dateexperation</label>
+                    <div class="input-group">
+                        <input id="field_dateexperation" type="text" class="form-control" name="dateexperation" ngbDatepicker  #dateexperationDp="ngbDatepicker" [(ngModel)]="equipement.dateexperation"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateexperationDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateexperation?.dirty && editForm.controls.dateexperation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateexperation?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fabricant">Fabricant</label>
+                    <input type="text" class="form-control" name="fabricant" id="field_fabricant"
+                        [(ngModel)]="equipement.fabricant" required/>
+                    <div [hidden]="!(editForm.controls.fabricant?.dirty && editForm.controls.fabricant?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fabricant?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_prixAchat">Prix Achat</label>
+                    <input type="number" class="form-control" name="prixAchat" id="field_prixAchat"
+                        [(ngModel)]="equipement.prixAchat" required/>
+                    <div [hidden]="!(editForm.controls.prixAchat?.dirty && editForm.controls.prixAchat?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.prixAchat?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.prixAchat?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numeroSerie">Numero Serie</label>
+                    <input type="number" class="form-control" name="numeroSerie" id="field_numeroSerie"
+                        [(ngModel)]="equipement.numeroSerie" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numeroCommande">Numero Commande</label>
+                    <input type="number" class="form-control" name="numeroCommande" id="field_numeroCommande"
+                        [(ngModel)]="equipement.numeroCommande" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + equipement.imageContentType + ';base64,' + equipement.image" style="max-height: 100px;" *ngIf="equipement.image" alt="equipement image"/>
+                        <div *ngIf="equipement.image" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{equipement.imageContentType}}, {{byteSize(equipement.image)}}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, equipement, 'image', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                        [(ngModel)]="equipement.image" />
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                        [(ngModel)]="equipement.imageContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_equipementParent">Equipement Parent</label>
+                    <select class="form-control" id="field_equipementParent" name="equipementparentDTO" [(ngModel)]="equipement.equipementparentDTO" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="equipementOption" *ngFor="let equipementOption of equipements; trackBy: trackEquipementById">{{equipementOption.nomEquipement}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_equipementFils">Equipement Fils</label>
+                    <select class="form-control" id="field_equipementFils" multiple name="equipementFils" [(ngModel)]="equipement.equipementFils">
+                        <option [ngValue]="getSelected(equipement.equipementFils, equipementOption)" *ngFor="let equipementOption of equipements; trackBy: trackEquipementById">{{equipementOption.nomEquipement}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_typeequipement">Typeequipement</label>
+                    <select class="form-control" id="field_typeequipement" name="typeequipementDTO" [(ngModel)]="equipement.typeequipementDTO" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="typeequipementOption" *ngFor="let typeequipementOption of typeequipements; trackBy: trackTypeequipementById">{{typeequipementOption.typeequipem}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_localisations">Localisations</label>
+                    <select class="form-control" id="field_localisations" name="localisationDTO" [(ngModel)]="equipement.localisationDTO" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="localisationsOption" *ngFor="let localisationsOption of localisations; trackBy: trackLocalisationsById">{{localisationsOption.nomlocalisation}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_servicee">Servicee</label>
+                    <select class="form-control" id="field_servicee" name="serviceDTO" [(ngModel)]="equipement.serviceDTO" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="serviceeOption" *ngFor="let serviceeOption of servicees; trackBy: trackServiceeById">{{serviceeOption.nomService}}</option>
+                    </select>
+                </div>
+               
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

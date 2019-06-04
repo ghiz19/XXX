@@ -1,0 +1,55 @@
+{
+    "name": "Utilisateur",
+    "fields": [
+        {
+            "fieldName": "nomresponsable",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prenomresponsable",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "role",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "equipe",
+            "otherEntityName": "equipe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "historiquetache",
+            "otherEntityRelationshipName": "utilisateur",
+            "relationshipName": "usertache"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "demandeintervention",
+            "otherEntityRelationshipName": "utilisateur",
+            "relationshipName": "userdemande"
+        }
+    ],
+    "changelogDate": "20190516120649",
+    "entityTableName": "utilisateur",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

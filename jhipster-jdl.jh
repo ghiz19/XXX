@@ -1,0 +1,120 @@
+																				entity Demandeintervention {
+                                                                                            description String required ,
+                                                                                            degreeurgence String ,
+                                                                                datedemande LocalDate , 
+                                                                                priorite String ,
+                                                                                dateprevu String ,
+                                                                                datereel String 
+                                                                                    }
+                                                                                    	entity Equipement {
+									nomEquipement String required,
+  								    marque String required,
+    								description String ,
+   								   dateAchat LocalDate ,
+   								 datedernieremaintenance  LocalDate ,
+                                  dateexperation LocalDate required ,
+                                  fabricant String required,
+                                  prixAchat Double required,
+                                  numeroSerie Integer  ,
+                                  numeroCommande Integer ,
+                                   image ImageBlob 
+															}
+
+                                                  entity Typeequipement {
+                                                      typeequipem String required
+                                                  }
+
+                                                                               entity Localisations{
+                                                                                      nomlocalisation String required
+                                                                               }
+                                                                                   entity Servicee{
+                                                                                          nomService String required
+                                                                                   }
+ 
+                                                               entity Pm {
+                                                                  libelle String required ,
+                                                                  unite String ,
+                                                                  avoirplanprevetinf Boolean required 
+                                                               } 
+                                                                     entity Contrat {
+                                                                                nomcontrat String required ,
+                                                                                coutcontrat Integer  required,
+                                                                                numerocontrat Integer ,
+                                                                                datedebutcontrat LocalDate required ,
+                                                                                datefincontrat LocalDate required ,
+                                                                                daterealisation LocalDate
+                                                                     }
+                                                                        entity Planprevetinf {
+                                                                                descriptionplan String required
+                                                                        }
+
+                                                                        entity Interevntion {
+                                                                                datedebutintervention ZonedDateTime required	,
+                                                                                datefinintervention ZonedDateTime required ,
+                                                                                duree String ,
+                                                                                coutmaindeuvre String required ,
+                                                                                coutinterevntion String required , 
+                                                                                solutions String required 
+                                                                        }
+                                                                        entity Etat {
+                                                                            nometat String required
+                                                                        }
+                                                                        entity Historiquetache{
+                                                                                    description String required ,
+                                                                                    datetimedebut ZonedDateTime required ,
+                                                                                    detetimedebut ZonedDateTime required
+                                                                        }
+                                                                        entity Equipe {
+                                                                                nomequipe String required
+                                                                        }
+                                                                        entity Utilisateur {
+                                                                            nomresponsable String required ,
+                                                                            prenomresponsable String required ,
+                                                                            role String required
+                                                                        }
+                                                                        
+                                                                        
+                                                                        relationship OneToMany {
+                                                                Typeequipement {equipments} to Equipement
+                                                                Servicee{equipems} to Equipement
+                                                                Localisations{localisationeEquipements} to Equipement
+                                                                Planprevetinf {planintervention} to Interevntion
+                                                                }
+                                                                 relationship ManyToOne {
+                                                                            Equipement {equipementParent} to Equipement ,
+
+                                                                            }
+
+																		 entity Demandeintervention {
+                                                                                            description String required ,
+                                                                                            degreeurgence String ,
+                                                                                datedemande LocalDate , 
+                                                                                priorite String ,
+                                                                                dateprevu String ,
+                                                                                datereel String 
+                                                                                    }
+
+                                                                        relationship ManyToMany {
+                                                                        Equipement {equipementFils} to Equipement ,
+                                                                        Equipement {equipsdemandes} to Demandeintervention
+                                                                        }
+
+
+																								
+                                                                                          relationship OneToMany {
+                                                                                        	  Equipe {equipeintervention} to Interevntion
+                                                                                          Equipement {pms} to Pm
+                                                                                          Equipement {contrats} to Contrat
+                                                                                          Equipement {equipavoirplan} to Planprevetinf
+                                                                                      	Etat {etatintervent} to Interevntion
+                                                                                        Interevntion {intervenhistorique} to Historiquetache
+                                                                                       Demandeintervention {demandeinterven} to Interevntion 
+                                                                                      	Utilisateur {usertache} to Historiquetache
+                                                                                        Equipe {equipeuser} to Utilisateur
+                                                                                        Utilisateur {userdemande} to Demandeintervention
+                                                                                      }
+                                                                        
+																		dto * with mapstruct
+service all with serviceImpl
+paginate * with pagination
+paginate Equipement with infinite-scroll

@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-utilisateur-heading">Create or edit a Utilisateur</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!utilisateur.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="utilisateur.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nomresponsable">Nomresponsable</label>
+                    <input type="text" class="form-control" name="nomresponsable" id="field_nomresponsable"
+                        [(ngModel)]="utilisateur.nomresponsable" required/>
+                    <div [hidden]="!(editForm.controls.nomresponsable?.dirty && editForm.controls.nomresponsable?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nomresponsable?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_prenomresponsable">Prenomresponsable</label>
+                    <input type="text" class="form-control" name="prenomresponsable" id="field_prenomresponsable"
+                        [(ngModel)]="utilisateur.prenomresponsable" required/>
+                    <div [hidden]="!(editForm.controls.prenomresponsable?.dirty && editForm.controls.prenomresponsable?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.prenomresponsable?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_role">Role</label>
+                    <input type="text" class="form-control" name="role" id="field_role"
+                        [(ngModel)]="utilisateur.role" required/>
+                    <div [hidden]="!(editForm.controls.role?.dirty && editForm.controls.role?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.role?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_equipe">Equipe</label>
+                    <select class="form-control" id="field_equipe" name="equipe" [(ngModel)]="utilisateur.equipeId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="equipeOption.id" *ngFor="let equipeOption of equipes; trackBy: trackEquipeById">{{equipeOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+{
+    "name": "Equipement",
+    "fields": [
+        {
+            "fieldName": "nomEquipement",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "marque",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateAchat",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "datedernieremaintenance",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateexperation",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fabricant",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prixAchat",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "numeroSerie",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "numeroCommande",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "pm",
+            "otherEntityRelationshipName": "equipement",
+            "relationshipName": "pms"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "contrat",
+            "otherEntityRelationshipName": "equipement",
+            "relationshipName": "contrats"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "planprevetinf",
+            "otherEntityRelationshipName": "equipement",
+            "relationshipName": "equipavoirplan"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "equipement",
+            "otherEntityRelationshipName": "equipement",
+            "relationshipName": "equipementParent",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "equipement",
+            "otherEntityRelationshipName": "equipement",
+            "relationshipName": "equipementFils",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "demandeintervention",
+            "otherEntityRelationshipName": "equipement",
+            "relationshipName": "equipsdemandes",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipName": "typeequipement",
+            "otherEntityName": "typeequipement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "localisations",
+            "otherEntityName": "localisations",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "servicee",
+            "otherEntityName": "servicee",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190429203505",
+    "entityTableName": "equipement",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

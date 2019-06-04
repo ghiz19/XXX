@@ -1,0 +1,35 @@
+{
+    "name": "Planprevetinf",
+    "fields": [
+        {
+            "fieldName": "descriptionplan",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "equipement",
+            "otherEntityName": "equipement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "interevntion",
+            "otherEntityRelationshipName": "planprevetinf",
+            "relationshipName": "planintervention"
+        }
+    ],
+    "changelogDate": "20190516120644",
+    "entityTableName": "planprevetinf",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
